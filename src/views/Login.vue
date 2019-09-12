@@ -9,7 +9,9 @@
       <!-- <input type="text" placeholder="账号或者手机号" />
       <input type="password" placeholder="密码" />-->
       <el-button type="text" style="float:right;">忘记密码?</el-button>
-
+      <div class="imgList" v-for="(face,index) in faceList " :key="index">
+        <img :src="face" alt />
+      </div>
       <el-button class="loginBtn" type="primary">注册/登录</el-button>
       <div class="bottomContainer">
         <p>
@@ -38,7 +40,18 @@
 export default {
   data() {
     return {
-      num: ""
+      num: "",
+      faceList: [
+        "../../static/face/face1.png",
+        "../../static/face/face2.png",
+        "../../static/face/face3.png",
+        "../../static/face/face1.png",
+        "../../static/face/face2.png",
+        "../../static/face/face3.png",
+        "../../static/face/face1.png",
+        "../../static/face/face2.png",
+        "../../static/face/face3.png"
+      ]
     };
   }
 };
@@ -84,6 +97,7 @@ html {
   top: 210px;
   width: 100%;
   height: 50px;
+  border-radius: 10px;
   background: lightgrey;
 }
 .midContainer .bottomContainer p {
@@ -97,6 +111,18 @@ html {
 /* .midContainer input::input-placeholder {
   color: steelblue;
 } */
+.imgList img {
+  position: relative;
+  left: 50px;
+  top: 150px;
+  margin-left: 5px;
+  width: 25px;
+  float: left;
+  transition: 0.5s;
+}
+.imgList img:hover {
+  width: 50px;
+}
 .footer {
   position: fixed;
   bottom: 0px;
@@ -128,7 +154,7 @@ html {
   width: 70%;
   height: 30px;
   top: 200px;
-  left: 40px;
+  left: 55px;
   line-height: 7px;
 }
 </style>
