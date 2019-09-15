@@ -10,6 +10,16 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/HomePage',
+      name: 'HomePage',
+      component: () => import('../views/HomePage.vue')
+    },
+    {
+      path: '/UserInfo',
+      name: 'UserInfo',
+      component: () => import('../components/Home/UserInfo.vue')
     }
   ]
 })

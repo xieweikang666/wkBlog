@@ -1,8 +1,10 @@
 <template>
   <div>
     <img class="back" src="../../static/back/loginBack1.jpg" alt />
+    <span id="blogTitle">Elsnake's Blog</span>
     <div class="midContainer">
-      <h4>密码登录</h4>
+      <em style="float:right">密码登录</em>
+
       <el-input v-model="num" placeholder="账号或者手机号"></el-input>
       <el-input v-model="num" placeholder="密码" show-password></el-input>
 
@@ -12,7 +14,7 @@
       <div class="imgList" v-for="(face,index) in faceList " :key="index">
         <img :src="face" alt />
       </div>
-      <el-button class="loginBtn" type="primary">注册/登录</el-button>
+      <el-button class="loginBtn" type="primary" @click="login()">注册/登录</el-button>
       <div class="bottomContainer">
         <p>
           未注册手机验证后自动登录
@@ -53,6 +55,11 @@ export default {
         "../../static/face/face3.png"
       ]
     };
+  },
+  methods: {
+    login() {
+      this.$router.push("/HomePage");
+    }
   }
 };
 </script>
@@ -69,10 +76,19 @@ html {
   width: 100%;
   height: 100%;
 }
+#blogTitle {
+  display: block;
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  left: 43%;
+  top: 10%;
+  font: small-caps bold 24px/1 sans-serif;
+}
 .midContainer {
-  margin-left: 35%;
+  margin-left: 38%;
   margin-top: 10%;
-  width: 25rem;
+  width: 26rem;
   height: 27rem;
   background: white;
   border-radius: 5px;
