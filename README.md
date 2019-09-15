@@ -1,7 +1,7 @@
 # wkblog
 
 > A Vue.js project
-
+自己做的小博客，希望可以通过这个小博客项目把学习的知识都实践一下 博客的域名为 elsnake.cn:8888
 ## Build Setup
 
 ``` bash
