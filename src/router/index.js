@@ -20,6 +20,11 @@ export default new Router({
       path: '/UserInfo',
       name: 'UserInfo',
       component: () => import('../components/Home/UserInfo.vue')
+    },
+    {
+      path: '/Blogs',
+      name: 'Blogs',
+      component: () => import('../components/Home/Blogs.vue')
     }
   ]
 })

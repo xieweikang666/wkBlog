@@ -1,10 +1,19 @@
 <template>
-  <div class="userinfo">
+  <div class="userinfo" v-if="isShow">
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
-        <img src="../../../static/user/头像.png" alt />
-        <span>臭弟弟</span>
-        <div id="nowtime"></div>
+        <el-dropdown>
+          <img src="../../../static/user/头像.png" alt />
+          <span>臭弟弟</span>
+          <i class="el-icon-close" @click="fade()"></i>
+          <div id="nowtime"></div>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>修改用户信息</el-dropdown-item>
+            <router-link to="/">
+              <el-dropdown-item>注 销</el-dropdown-item>
+            </router-link>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
       <i class="el-icon-position"></i>
       <span id="add">{{curAddress}}</span>
@@ -24,6 +33,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isShow: true
+    };
+  },
   created() {
     this.getLocation();
     setInterval(() => {
@@ -100,6 +114,10 @@ export default {
           console.log(data);
         }
       });
+    },
+    fade() {
+      // document.getElementById("userinfo").style.visibility = hidden;
+      this.isShow = false;
     }
   }
 };
@@ -108,17 +126,25 @@ export default {
 <style>
 #add {
   font-size: 14px;
-  color: rgb(112, 207, 245);
+  color: rgb(65, 230, 153);
 }
 #nowtime {
   margin-top: 5px;
   font-size: 13px;
   font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑";
 }
+.el-icon-close {
+  position: relative;
+  font-size: 20px;
+  color: red;
+  top: 10px;
+  left: 60px;
+  float: right;
+}
 
 .userinfo {
   position: fixed;
-  right: 10px;
+  right: 5px;
 }
 .userinfo .el-card {
   width: 300px;

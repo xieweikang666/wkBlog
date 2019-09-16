@@ -1,20 +1,35 @@
 <template>
   <div>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <TopHeader></TopHeader>
+      </el-header>
       <el-main>
-        <UserInfo></UserInfo>Main
+        <UserInfo></UserInfo>
+        <WriteBlog></WriteBlog>
+        <Blogs></Blogs>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        <FooterInfo></FooterInfo>
+      </el-footer>
     </el-container>
   </div>
 </template>
 
 <script>
 import UserInfo from "../components/Home/UserInfo";
+import Blogs from "../components/Home/Blogs";
+import TopHeader from "../components/Home/TopHeader";
+import WriteBlog from "../components/Home/WriteBlog";
+import FooterInfo from "../components/Home/FooterInfo";
+
 export default {
   components: {
-    UserInfo
+    UserInfo,
+    Blogs,
+    TopHeader,
+    WriteBlog,
+    FooterInfo
   }
 };
 </script>
@@ -27,11 +42,11 @@ export default {
 }
 
 .el-header {
-  background: orange;
+  background: green;
 }
 .el-main {
-  background: antiquewhite;
-  height: 87vh;
+  background: rgb(241, 241, 241);
+  /* height: 87vh; */
 }
 .el-footer {
   background: olivedrab;
