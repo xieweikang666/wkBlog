@@ -1,33 +1,42 @@
 <template>
-  <div class="userinfo" v-if="isShow">
-    <el-card shadow="hover">
-      <div slot="header" class="clearfix">
-        <el-dropdown>
-          <img src="../../../static/user/头像.png" alt />
-          <span>臭弟弟</span>
-          <i class="el-icon-close" @click="fade()"></i>
-          <div id="nowtime"></div>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>修改用户信息</el-dropdown-item>
-            <router-link to="/">
-              <el-dropdown-item>注 销</el-dropdown-item>
-            </router-link>
-          </el-dropdown-menu>
-        </el-dropdown>
+  <div>
+    <transition enter-active-class="animated tada" leave-active-class="animated shake">
+      <div class="userinfo" v-if="isShow">
+        <el-card shadow="hover">
+          <div slot="header" class="clearfix">
+            <el-dropdown>
+              <img src="../../../static/user/头像.png" alt />
+              <span>臭弟弟</span>
+              <i class="el-icon-close" @click="fade()"></i>
+              <div id="nowtime"></div>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>修改用户信息</el-dropdown-item>
+                <router-link to="/">
+                  <el-dropdown-item>注 销</el-dropdown-item>
+                </router-link>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+          <i class="el-icon-position"></i>
+          <span id="add">{{curAddress}}</span>
+          <div class="decorate">
+            <img src="../../../static/face/happyface.png" alt />
+            <img src="../../../static/face/sleepface.png" alt />
+            <img src="../../../static/face/sadface.png" alt />
+            <img src="../../../static/face/happyface.png" alt />
+            <img src="../../../static/face/sleepface.png" alt />
+            <img src="../../../static/face/sadface.png" alt />
+            <img src="../../../static/face/happyface.png" alt />
+            <img src="../../../static/face/sleepface.png" alt />
+          </div>
+        </el-card>
       </div>
-      <i class="el-icon-position"></i>
-      <span id="add">{{curAddress}}</span>
-      <div class="decorate">
-        <img src="../../../static/face/happyface.png" alt />
-        <img src="../../../static/face/sleepface.png" alt />
-        <img src="../../../static/face/sadface.png" alt />
-        <img src="../../../static/face/happyface.png" alt />
-        <img src="../../../static/face/sleepface.png" alt />
-        <img src="../../../static/face/sadface.png" alt />
-        <img src="../../../static/face/happyface.png" alt />
-        <img src="../../../static/face/sleepface.png" alt />
+    </transition>
+    <transition enter-active-class="animated jello" leave-active-class="animated bounceOutRight">
+      <div class="closeinfo" v-if="!isShow" @click="fade()">
+        <i class="el-icon-caret-left"></i>
       </div>
-    </el-card>
+    </transition>
   </div>
 </template>
 
@@ -117,7 +126,7 @@ export default {
     },
     fade() {
       // document.getElementById("userinfo").style.visibility = hidden;
-      this.isShow = false;
+      this.isShow = !this.isShow;
     }
   }
 };
@@ -177,18 +186,23 @@ export default {
     left: 0px;
   }
 }
-/* @keyframes endmove {
-  from {
-    left: 50px;
-  }
-  to {
-    left: 0px;
-  }
-} */
 .userinfo .decorate img:hover {
   width: 30px;
 }
-
+.closeinfo {
+  position: fixed;
+  right: 5px;
+  width: 20px;
+  height: 200px;
+  background: white;
+  border: 1px solid;
+  border-color: lightgray;
+}
+.el-icon-caret-left {
+  position: relative;
+  top: 80px;
+  font-size: 20px;
+}
 .clearfix:before,
 .clearfix:after {
   display: table;
