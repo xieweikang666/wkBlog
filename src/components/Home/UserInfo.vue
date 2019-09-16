@@ -149,6 +149,7 @@ export default {
   top: 10px;
   left: 60px;
   float: right;
+  cursor: pointer;
 }
 
 .userinfo {
@@ -202,6 +203,7 @@ export default {
   position: relative;
   top: 80px;
   font-size: 20px;
+  cursor: pointer;
 }
 .clearfix:before,
 .clearfix:after {
