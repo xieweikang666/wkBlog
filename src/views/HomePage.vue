@@ -40,6 +40,7 @@ export default {
   margin-top: 0px;
   margin-left: 0px;
   margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 .el-header {
@@ -50,6 +51,7 @@ export default {
   /* height: 87vh; */
 }
 .el-footer {
+  width: 100%;
   background: olivedrab;
 }
 </style>

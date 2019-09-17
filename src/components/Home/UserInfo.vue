@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition enter-active-class="animated tada" leave-active-class="animated shake">
-      <div class="userinfo" v-if="isShow">
+      <div class="userinfo" v-show="isShow">
         <el-card shadow="hover">
           <div slot="header" class="clearfix">
             <el-dropdown>
@@ -205,6 +205,7 @@ export default {
   font-size: 20px;
   cursor: pointer;
 }
+
 .clearfix:before,
 .clearfix:after {
   display: table;
