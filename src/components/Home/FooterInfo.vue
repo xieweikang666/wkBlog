@@ -1,26 +1,65 @@
 <template>
-  <div class="flexInfo">
-    <span>增值电信业务经营许可证：合字B2-20090007</span>
-    <span>京ICP备10036305号</span>
-    <span>隐私声明和 Cookie</span>
-    <span>广告</span>
-    <span>报告</span>
-    <span>帮助</span>
-    <span>反馈</span>
+  <div class="footerDress">
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/sadface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/sadface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/sadface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/sadface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/sadface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
+    <img src="../../../static/face/sadface.png" alt />
+    <img src="../../../static/face/happyface.png" alt />
+    <img src="../../../static/face/sleepface.png" alt />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
-.flexInfo {
+.footerDress {
+  margin-left: 20%;
+  margin-top: 20px;
+}
+.footerDress img {
   position: relative;
-  top: 35px;
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
-  color: whitesmoke;
+  width: 20px;
+  margin-left: 5px;
+  margin-right: 0px;
+  transition: 0.1s;
+  animation: bottommove 10s infinite;
+}
+.footerDress img:hover {
+  width: 30px;
+}
+@keyframes bottommove {
+  from {
+    left: 0px;
+  }
+  50% {
+    left: 200px;
+  }
+  to {
+    left: 0px;
+  }
 }
 </style>

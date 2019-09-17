@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Vuex from 'vuex'
 import store from './store'
 import animate from 'animate.css'
-
+import { Loading } from 'element-ui';
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.config.productionTip = false

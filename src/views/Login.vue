@@ -8,8 +8,6 @@
       <el-input v-model="num" placeholder="账号或者手机号"></el-input>
       <el-input v-model="num" placeholder="密码" show-password></el-input>
 
-      <!-- <input type="text" placeholder="账号或者手机号" />
-      <input type="password" placeholder="密码" />-->
       <el-button type="text" style="float:right;">忘记密码?</el-button>
       <div class="imgList" v-for="(face,index) in faceList " :key="index">
         <img :src="face" alt />
@@ -43,6 +41,8 @@ export default {
   data() {
     return {
       num: "",
+      loading: "",
+      logLoading: "",
       faceList: [
         "../../static/face/face1.png",
         "../../static/face/face2.png",
@@ -56,9 +56,31 @@ export default {
       ]
     };
   },
+  created() {
+    this.blogLoading();
+  },
+  mounted() {
+    this.loading.close();
+  },
   methods: {
     login() {
       this.$router.push("/HomePage");
+    },
+    blogLoading() {
+      console.log("loading函数执行！");
+      this.loading = this.$loading({
+        lock: true,
+        text: "正在飞速加载中~",
+        background: "rgba(255,255,255,1)"
+      });
+    },
+    loginLoading() {
+      console.log("用户正在登录！");
+      this.logLoading = this.$loading({
+        lock: true,
+        text: "正在登录...",
+        background: "rgba(255,255,255,0.9)"
+      });
     }
   }
 };

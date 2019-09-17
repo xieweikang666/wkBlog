@@ -52,6 +52,7 @@ export default {
 }
 .el-footer {
   width: 100%;
+  height: 20px;
   background: olivedrab;
 }
 </style>
