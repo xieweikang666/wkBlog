@@ -52,7 +52,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     // 本地编写代码时使用👇
     assetsPublicPath: '/',
-
     // 打包项目时使用👇
     // assetsPublicPath: './',
 
