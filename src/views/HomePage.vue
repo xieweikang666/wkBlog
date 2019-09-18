@@ -48,7 +48,7 @@ export default {
 }
 .el-main {
   background: rgb(241, 241, 241);
-  /* height: 87vh; */
+  height: 88vh;
 }
 .el-footer {
   width: 100%;
