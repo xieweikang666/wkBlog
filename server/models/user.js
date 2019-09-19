@@ -1,7 +1,7 @@
 const db = require('../config/db.js');
 // 引入user的表结构
 const userModel = '../schema/user.js';
-const wkblog = db.wkblog;
+const wkblog = db.wkblogdb;
 // 用sequelize的import方法引入表结构，实例化了User。
 const User = wkblog.import(userModel);
 
@@ -15,7 +15,16 @@ const getUserById = function* (id) {
     })
     return userInfo;
 }
+const getUserByName = function* (name) {
+    const userInfo = yield User.findOne({
+        where: {
+            userName: name
+        }
+    })
+    return userInfo;
+}
 module.exports = {
     // 导出getUserById的方法 将在controller里调用
-    getUserById
+    getUserById,
+    getUserByName
 }

@@ -23,11 +23,10 @@ app.on('error', function (err, ctx) {
 });
 
 koa.use('/auth', auth.routes()); // 挂载到koa-router上，同时会让所有的auth的请求路径前面加上'/auth'的请求路径。
-// koa.use('/api', jasonwebtoken({ secret: 'vue-koa-demo' }), api.routes())
 app.use(koa.routes()); // 将路由规则挂载到Koa上。
 
-app.listen(3000, () => {
-    console.log('Koa is listening in 3000');
+app.listen(9999, () => {
+    console.log('Koa is listening in 9999');
 });
 
 module.exports = app;
