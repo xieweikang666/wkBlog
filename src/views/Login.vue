@@ -83,7 +83,7 @@ export default {
               center: true,
               showClose: true
             });
-            this.$router.push("/HomePage");
+            this.loginLoading();
           } else {
             this.$message({
               type: "warning",
@@ -117,8 +117,12 @@ export default {
       this.logLoading = this.$loading({
         lock: true,
         text: "正在登录...",
-        background: "rgba(255,255,255,0.9)"
+        background: "rgba(255,255,255,1)"
       });
+      setTimeout(() => {
+        this.logLoading.close();
+        this.$router.push("/HomePage"); //把路由跳转放到loading函数中
+      }, 1000);
     }
   }
 };

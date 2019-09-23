@@ -26,6 +26,15 @@ export default new Router({
       name: 'Blogs',
       component: () => import('../components/Home/Blogs.vue')
     },
-
+    {
+      path: '/notFound',
+      name: 'notFound',
+      component: () => import('../components/notFound.vue')
+    },
+    {
+      path: '/notLogin',
+      name: 'notLogin',
+      component: () => import('../components/notLogin.vue')
+    },
   ]
 })

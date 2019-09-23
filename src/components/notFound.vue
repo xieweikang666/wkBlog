@@ -4,7 +4,9 @@
     <p>4 0 4</p>
     <span>没找到你要的页面，但我给你设计了个漂亮的404界面~</span>
     <br />
-    <span class="goHome" @click="goHome()">返回首页</span>
+    <u>
+      <span class="goHome" @click="goHome()">返回首页</span>
+    </u>
   </div>
 </template>
 
