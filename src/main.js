@@ -13,8 +13,6 @@ import { Loading } from 'element-ui';
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.config.productionTip = false
-
-
 Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */

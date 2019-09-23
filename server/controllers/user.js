@@ -1,5 +1,6 @@
 const user = require('../models/user.js');
-const jwt = require('koa-jwt');
+const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcryptjs')
 
 const getUserInfo = function* () {
     const id = this.params.id;  //获取从url里传递来的参数的userId
@@ -9,21 +10,20 @@ const getUserInfo = function* () {
 
 const postUserAuth = function* () {
     const data = this.request.body; // post过来的数据存在request.body里
-    const userInfo = yield user.getUserByName(data.userName);
+    const userInfo = yield user.getUserById(data.userId);
 
     if (userInfo != null) { // 如果查无此用户会返回null
-        if (userInfo.userPasswd != data.password) {
+        if (userInfo.user_passwd != data.userPasswd) {
             this.body = {
                 success: false, // success标志位是方便前端判断返回是正确与否
                 info: '密码错误！'
             }
         } else { // 如果密码正确
-
             const userToken = {
-                name: userInfo.userName,
-                id: userInfo.userId
+                // name: userInfo.user_name,
+                id: userInfo.user_id
             }
-            const secret = 'vue-koa-demo'; // 指定密钥，这是之后用来判断token合法性的标志
+            const secret = 'vue-koa-token'; // 指定密钥，这是之后用来判断token合法性的标志
             const token = jwt.sign(userToken, secret); // 签发token
             this.body = {
                 success: true,

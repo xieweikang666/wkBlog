@@ -10,7 +10,7 @@ const getUserById = function* (id) {
     const userInfo = yield User.findOne({
         // 用yield控制异步操作，将返回的Promise对象里的数据返回出来。也就实现了“同步”的写法获取异步IO操作的数据
         where: {
-            userId: id
+            user_id: id
         }
     })
     return userInfo;
@@ -18,7 +18,7 @@ const getUserById = function* (id) {
 const getUserByName = function* (name) {
     const userInfo = yield User.findOne({
         where: {
-            userName: name
+            user_name: name
         }
     })
     return userInfo;

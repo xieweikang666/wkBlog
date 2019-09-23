@@ -5,8 +5,8 @@
     <div class="midContainer">
       <em style="float:right">密码登录</em>
 
-      <el-input v-model="num" placeholder="账号或者手机号"></el-input>
-      <el-input v-model="num" placeholder="密码" show-password></el-input>
+      <el-input v-model="uId" placeholder="账号或者手机号"></el-input>
+      <el-input v-model="uPasswd" placeholder="密码" show-password></el-input>
 
       <el-button type="text" style="float:right;">忘记密码?</el-button>
       <div class="imgList" v-for="(face,index) in faceList " :key="index">
@@ -43,6 +43,8 @@ export default {
       num: "",
       loading: "",
       logLoading: "",
+      uId: "",
+      uPasswd: "",
       faceList: [
         "../../static/face/face1.png",
         "../../static/face/face2.png",
@@ -63,9 +65,45 @@ export default {
     this.loading.close();
   },
   methods: {
+    // 登录方法
     login() {
-      this.$router.push("/HomePage");
+      let obj = {
+        userId: this.uId,
+        userPasswd: this.uPasswd
+      };
+      console.log(obj);
+      this.$axios.post("/auth/user", obj).then(
+        res => {
+          console.log(res);
+          if (res.data.success) {
+            sessionStorage.setItem("user-token", res.data.token);
+            this.$message({
+              type: "success",
+              message: "登录成功!",
+              center: true,
+              showClose: true
+            });
+            this.$router.push("/HomePage");
+          } else {
+            this.$message({
+              type: "warning",
+              // 登录失败，显示提示语
+              message: res.data.info,
+              center: true,
+              showClose: true
+            });
+            sessionStorage.setItem("user-token", null);
+          }
+        },
+        err => {
+          console.log(err);
+          this.$message.error("请求错误:(");
+          sessionStorage.setItem("user-token", null);
+        }
+      );
     },
+
+    // 加载页面
     blogLoading() {
       console.log("loading函数执行！");
       this.loading = this.$loading({

@@ -1,10 +1,9 @@
 const Koa = require('koa');
-const app = new Koa();
 const koa = require('koa-router')()
     , json = require('koa-json')
     , logger = require('koa-logger')
     , auth = require('./server/routes/auth.js'); // 引入auth
-
+const app = new Koa();
 app.use(require('koa-bodyparser')());
 app.use(json());
 app.use(logger());

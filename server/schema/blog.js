@@ -2,20 +2,20 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('blog', {
-    blogId: {
+    blog_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
     },
-    blogTitle: {
+    blog_title: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    blogContent: {
+    blog_content: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    blogTime: {
+    blog_time: {
       type: DataTypes.DATE,
       allowNull: true
     }
