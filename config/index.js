@@ -15,10 +15,10 @@ module.exports = {
         target: 'http://localhost:9999',
         changeOrigin: true
       },
-      // '/api': {
-      //   target: 'http://localhost:9999',
-      //   changeOrigin: true
-      // }
+      '/api': {
+        target: 'http://localhost:9999',
+        changeOrigin: true
+      }
     },
 
     // Various Dev Server settings

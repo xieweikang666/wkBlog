@@ -72,10 +72,12 @@ export default {
         this.userId = "";
         this.userName = "";
       }
+      console.log(userInfo);
     },
     getUserInfo() {
       const token = sessionStorage.getItem("user-token");
       if (token != null && token != "null") {
+        // 解析token
         let decode = jwt.decode(token);
         return decode;
       } else {

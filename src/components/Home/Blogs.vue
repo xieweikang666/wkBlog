@@ -10,7 +10,7 @@
           <i class="el-icon-edit"></i>
           <strong>{{userBlogs.bId}}</strong>
           <em>{{userBlogs.bTitle}}</em>
-          <el-button style="float: right; padding: 3px 0;color:green;" type="text">修改</el-button>
+          <el-button style="float: right; padding: 3px 0;color:green;" type="text">编辑</el-button>
         </div>
         <span>{{userBlogs.bContent}}</span>
         <br />
@@ -26,10 +26,13 @@
 </template>
 
 <script>
-import { type } from "os";
+import jwt from "jsonwebtoken";
 export default {
   data() {
     return {
+      uid: "",
+      uname: "",
+      list: "",
       userBlogs: [
         {
           bId: "1",
@@ -82,6 +85,17 @@ export default {
       ]
     };
   },
+  created() {
+    const userInfo = this.getUserInfo();
+    if (userInfo != null) {
+      this.uid = userInfo.id;
+      this.uname = userInfo.name;
+    } else {
+      this.uid = "";
+      this.uname = "";
+    }
+    this.getBlogList(); // 新增：在组件创建时获取BlogList
+  },
   methods: {
     deleteBlogs(i) {
       this.$confirm("您将要删除该条博客,are u sure?", "提示", {
@@ -106,6 +120,29 @@ export default {
             message: "取消删除"
           });
         });
+    },
+    getUserInfo() {
+      const token = sessionStorage.getItem("user-token");
+      if (token != null && token != "null") {
+        // 解析token
+        let decode = jwt.decode(token);
+        return decode;
+      } else {
+        return null;
+      }
+    },
+    getBlogList() {
+      this.$axios.get("api/blogList/" + this.uid).then(res => {
+        if (res.status == 200) {
+          this.list = res.data;
+        } else {
+          this.$message.error("获取博客信息失败 : (");
+        }
+      });
+      err => {
+        this.$message.error("获取博客列表失败！");
+        console.log(err);
+      };
     }
   }
 };
