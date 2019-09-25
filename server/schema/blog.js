@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
+    user_id: {
+      type: DataTypes.CHAR(255),
+      allowNull: true
+    },
     blog_title: {
       type: DataTypes.STRING(255),
       allowNull: true
