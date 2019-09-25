@@ -3,7 +3,7 @@
     <!-- 若路径未能匹配，则跳转到404界面 -->
     <notFound v-if="invalidRoute"></notFound>
     <!-- 若路径匹配，则显示路由界面 -->
-    <router-view v-else />
+    <router-view />
   </div>
 </template>
 
@@ -19,6 +19,15 @@ export default {
     invalidRoute() {
       return !this.$route.matched || this.$route.matched.length === 0;
     }
+    // notLoginRoute() {
+    //   const token = sessionStorage.getItem("user-token");
+    //   if (token) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+    // }
   }
 };
 </script>

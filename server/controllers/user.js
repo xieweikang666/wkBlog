@@ -20,7 +20,7 @@ const postUserAuth = function* () {
             }
         } else { // 如果密码正确
             const userToken = {
-                // name: userInfo.user_name,
+                name: userInfo.user_name,
                 id: userInfo.user_id
             }
             const secret = 'vue-koa-token'; // 指定密钥，这是之后用来判断token合法性的标志

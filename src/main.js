@@ -15,21 +15,18 @@ Vue.use(Vuex)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 
-
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('user-token');
   if (to.path == '/') { // 如果是跳转到登录页的
     if (token != 'null' && token != null) {
-      next('/HomePage') // 如果有token就转向todolist不返回登录页
+      next('/HomePage') // 如果有token就转向HomePage不返回登录页
     }
     next(); // 否则跳转回登录页
-  }
-  else {
+  } else {
     if (token != 'null' && token != null) {
-      // Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       next() // 如果有token就正常转向
     } else {
-      next('/notLogin') // 否则跳转回登录页
+      next('/') // 否则跳转回登录页
     }
   }
 })

@@ -6,7 +6,7 @@
           <div slot="header" class="clearfix">
             <el-dropdown>
               <img src="../../../static/user/头像.png" alt />
-              <span>臭弟弟</span>
+              <span>{{userId}} {{userName}}</span>
               <i class="el-icon-close" @click="fade()"></i>
               <div id="nowtime"></div>
               <el-dropdown-menu slot="dropdown">
@@ -41,13 +41,17 @@
 </template>
 
 <script>
+import jwt from "jsonwebtoken";
 export default {
   data() {
     return {
-      isShow: true
+      isShow: true,
+      userName: "水箭龟",
+      userId: "123"
     };
   },
   created() {
+    this.getUserName();
     this.getLocation();
     setInterval(() => {
       this.getNowTime();
@@ -59,6 +63,25 @@ export default {
     }
   },
   methods: {
+    getUserName() {
+      const userInfo = this.getUserInfo();
+      if (userInfo != null) {
+        this.userId = userInfo.id;
+        this.userName = userInfo.name;
+      } else {
+        this.userId = "";
+        this.userName = "";
+      }
+    },
+    getUserInfo() {
+      const token = sessionStorage.getItem("user-token");
+      if (token != null && token != "null") {
+        let decode = jwt.decode(token);
+        return decode;
+      } else {
+        return null;
+      }
+    },
     getNowTime() {
       var time = new Date();
       var year = time.getFullYear();
