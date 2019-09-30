@@ -5,16 +5,16 @@
       leave-active-class="animated wobble"
     >
       <!-- 因为在transition-group子元素上，不能使用v-for索引作为键，否则与不使用键相同，所以：key值绑定的不能是index，得要换成userBlogs -->
-      <el-card v-for="(userBlogs,index) in userBlogs" :key="userBlogs">
+      <el-card v-for="(list,index) in list" :key="list.blog_id">
         <div slot="header">
           <i class="el-icon-edit"></i>
-          <strong>{{userBlogs.bId}}</strong>
-          <em>{{userBlogs.bTitle}}</em>
+          <strong>{{list.blog_id}}</strong>
+          <em>{{list.blog_title}}</em>
           <el-button style="float: right; padding: 3px 0;color:green;" type="text">编辑</el-button>
         </div>
-        <span>{{userBlogs.bContent}}</span>
+        <span>{{list.blog_content}}</span>
         <br />
-        <time class="time">{{ userBlogs.bTime }}</time>
+        <time class="time">{{ list.blog_time }}</time>
         <el-button
           style="float: right; padding: 1px 0;color:gray;"
           type="text"
@@ -32,57 +32,57 @@ export default {
     return {
       uid: "",
       uname: "",
-      list: "",
-      userBlogs: [
-        {
-          bId: "1",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "2",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "3",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "4",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "5",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "6",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "7",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        },
-        {
-          bId: "8",
-          bTitle: "今天的感想",
-          bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-          bTime: Date()
-        }
-      ]
+      list: []
+      // userBlogs: [
+      //   {
+      //     bId: "1",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "2",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "3",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "4",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "5",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "6",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "7",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   },
+      //   {
+      //     bId: "8",
+      //     bTitle: "今天的感想",
+      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
+      //     bTime: Date()
+      //   }
+      // ]
     };
   },
   created() {
@@ -104,7 +104,7 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.userBlogs.splice(i, 1);
+          this.list.splice(i, 1);
           this.$message({
             showClose: true,
             type: "success",
@@ -132,14 +132,17 @@ export default {
       }
     },
     getBlogList() {
-      this.$axios.get("api/blogList/" + this.uid).then(res => {
+      this.$axios.get("/api/blogList/" + this.uid).then(res => {
         if (res.status == 200) {
           this.list = res.data;
+          console.log(this.list);
         } else {
+          console.log(this.list);
           this.$message.error("获取博客信息失败 : (");
         }
       });
       err => {
+        console.log(this.list);
         this.$message.error("获取博客列表失败！");
         console.log(err);
       };

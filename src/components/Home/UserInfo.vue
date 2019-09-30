@@ -8,7 +8,8 @@
               <img src="../../../static/user/头像.png" alt />
               <span>{{userId}} {{userName}}</span>
               <i class="el-icon-close" @click="fade()"></i>
-              <div id="nowtime"></div>
+              <span>{{nowTime}}</span>
+              <!-- <div id="nowtime"></div> -->
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>修改用户信息</el-dropdown-item>
                 <router-link to="/">
@@ -47,12 +48,15 @@ export default {
     return {
       isShow: true,
       userName: "水箭龟",
-      userId: "123"
+      userId: "123",
+      nowTime: ""
     };
   },
   created() {
     this.getUserName();
     this.getLocation();
+  },
+  mounted() {
     setInterval(() => {
       this.getNowTime();
     }, 1000);
@@ -95,7 +99,7 @@ export default {
       h = this.check(h);
       m = this.check(m);
       s = this.check(s);
-      document.getElementById("nowtime").innerHTML =
+      this.nowTime =
         "当前时间：" +
         year +
         "年" +
@@ -162,11 +166,7 @@ export default {
   font-size: 14px;
   color: rgb(65, 230, 153);
 }
-#nowtime {
-  margin-top: 5px;
-  font-size: 13px;
-  font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑";
-}
+
 .el-icon-close {
   position: relative;
   font-size: 20px;
