@@ -8,6 +8,8 @@ const getBlogList = function* () {     // 获取某个用户的所有todolist
 const writeBlog = function* () {
     const data = this.request.body;
     const result = yield bloglist.writeBlog(data);
+    // this.body = result;
+
     this.body = {
         success: true
     }

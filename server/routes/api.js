@@ -6,4 +6,6 @@ const router = require('koa-router')();
 // router.get(blogList);
 // 引入koa-router
 router.get('/blogList/:id', blogList.getBlogList); // 定义url的参数是id,用user的auth方法引入router
+router.post('/blogList', blogList.writeBlog);
+
 module.exports = router;         // 导出router规则

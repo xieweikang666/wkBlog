@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     blog_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {

@@ -8,7 +8,7 @@
               <img src="../../../static/user/头像.png" alt />
               <span>{{userId}} {{userName}}</span>
               <i class="el-icon-close" @click="fade()"></i>
-              <span>{{nowTime}}</span>
+              <div>{{nowTime}}</div>
               <!-- <div id="nowtime"></div> -->
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>修改用户信息</el-dropdown-item>
@@ -47,8 +47,8 @@ export default {
   data() {
     return {
       isShow: true,
-      userName: "水箭龟",
-      userId: "123",
+      userName: "",
+      userId: "",
       nowTime: ""
     };
   },

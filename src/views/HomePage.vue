@@ -6,8 +6,8 @@
       </el-header>
       <el-main>
         <UserInfo></UserInfo>
-        <WriteBlog></WriteBlog>
-        <Blogs></Blogs>
+        <WriteBlog :uid="uid"></WriteBlog>
+        <Blogs @sendUId="getUId"></Blogs>
       </el-main>
       <el-footer>
         <FooterInfo></FooterInfo>
@@ -30,6 +30,17 @@ export default {
     TopHeader,
     WriteBlog,
     FooterInfo
+  },
+  data() {
+    return {
+      uid: ""
+    };
+  },
+  methods: {
+    getUId(id) {
+      console.log("homepage获取到来自blog组件传递的uid:" + id);
+      this.uid = id;
+    }
   }
 };
 </script>
@@ -42,7 +53,6 @@ export default {
   margin-right: 0px;
   margin-bottom: 0px;
 }
-
 .el-header {
   background: green;
 }

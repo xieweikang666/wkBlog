@@ -33,56 +33,6 @@ export default {
       uid: "",
       uname: "",
       list: []
-      // userBlogs: [
-      //   {
-      //     bId: "1",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "2",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "3",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "4",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "5",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "6",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "7",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   },
-      //   {
-      //     bId: "8",
-      //     bTitle: "今天的感想",
-      //     bContent: "Never forget to say “thanks”.　永远不要忘了说“谢谢”!",
-      //     bTime: Date()
-      //   }
-      // ]
     };
   },
   created() {
@@ -90,13 +40,18 @@ export default {
     if (userInfo != null) {
       this.uid = userInfo.id;
       this.uname = userInfo.name;
+      this.sendUserId();
     } else {
       this.uid = "";
       this.uname = "";
     }
+
     this.getBlogList(); // 新增：在组件创建时获取BlogList
   },
   methods: {
+    sendUserId() {
+      this.$emit("sendUId", this.uid);
+    },
     deleteBlogs(i) {
       this.$confirm("您将要删除该条博客,are u sure?", "提示", {
         confirmButtonText: "Sure",
@@ -157,7 +112,7 @@ export default {
 }
 .blogs .el-card {
   float: left;
-  width: 20%;
+  width: 300px;
   margin-bottom: 5px;
   margin: 20px;
 }
