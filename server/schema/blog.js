@@ -1,11 +1,12 @@
 /* jshint indent: 2 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('blog', {
     blog_id: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.INTEGER(150),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true //自增
     },
     user_id: {
       type: DataTypes.CHAR(255),
