@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import qs from "qs";
 export default {
   props: {
     uid: String
@@ -25,7 +26,7 @@ export default {
   data() {
     return {
       // 需要解决该问题 blog的id应该自增
-      bid: 5,
+      // bid: 6,
       btitle: "",
       bcontent: "",
       btime: ""
@@ -34,7 +35,7 @@ export default {
   mounted() {
     setTimeout(() => {
       console.log("writeblog获取到来自父组件homepage传递过来的uid:" + this.uid);
-    }, 100);
+    }, 0);
   },
   methods: {
     addBlog() {
@@ -43,7 +44,7 @@ export default {
       } else {
         this.btime = this.getNowTime();
         let obj = {
-          id: this.bid,
+          // id: "",
           uid: this.uid,
           title: this.btitle,
           content: this.bcontent,
@@ -54,7 +55,7 @@ export default {
             //如果返回200 则说明创建成功
             this.$message({
               type: "success",
-              message: "创建成功~)"
+              message: "创建成功 : ) "
             });
           } else {
             this.$message.error("创建失败!");
@@ -65,6 +66,7 @@ export default {
             console.log(err);
           };
       }
+      this.btitle = ""; //把blog标题清空
       this.bcontent = ""; //将blog内容清空
     },
     getNowTime() {
@@ -101,7 +103,6 @@ export default {
 .writeBlog {
   width: 350px;
 }
-
 .writeBlog .blogtitle {
   width: 200px;
   margin-top: 10px;

@@ -15,7 +15,7 @@ const getBlogListById = function* (id) {
 }
 const writeBlog = function* (data) {
     yield blogList.create({
-        blog_id: data.id,
+        // blog_id: data.id,
         user_id: data.uid,
         blog_title: data.title,
         blog_content: data.content,
