@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <!-- 若路径未能匹配，则跳转到404界面 -->
-    <h2>hey</h2>
     <notFound v-if="invalidRoute"></notFound>
     <!-- 若路径匹配，则显示路由界面 -->
     <router-view />
