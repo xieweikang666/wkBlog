@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition enter-active-class="animated tada" leave-active-class="animated shake">
+    <transition enter-active-class="animated bounceInRight" leave-active-class="animated zoomOut">
       <div class="userinfo" v-show="isShow">
         <el-card shadow="hover">
           <div slot="header" class="clearfix">
@@ -172,7 +172,7 @@ export default {
   font-size: 20px;
   color: red;
   top: 10px;
-  left: 60px;
+  left: 40px;
   float: right;
   cursor: pointer;
 }

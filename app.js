@@ -41,7 +41,8 @@ app.on('error', function (err, ctx) {
 });
 
 koa.use('/auth', auth.routes()); // 挂载到koa-router上，同时会让所有的auth的请求路径前面加上'/auth'的请求路径。
-koa.use('/api', api.routes())     // 所有走/api/打头的请求都需要经过jwt中间件的验证。secret密钥必须跟我们当初签发的secret一致
+koa.use('api', jwt({ secret: 'vue-koa-token' }), api.routes())
+// koa.use('/api', api.routes())     // 所有走/api/打头的请求都需要经过jwt中间件的验证。secret密钥必须跟我们当初签发的secret一致
 // jwt({ secret: 'vue-koa-token' }),
 app.use(koa.routes()); // 将路由规则挂载到Koa上。
 

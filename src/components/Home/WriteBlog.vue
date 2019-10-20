@@ -68,6 +68,9 @@ export default {
       }
       this.btitle = ""; //把blog标题清空
       this.bcontent = ""; //将blog内容清空
+      setTimeout(() => {
+        this.$router.go(0); //刷新页面
+      }, 0);
     },
     getNowTime() {
       var time = new Date();

@@ -10,7 +10,11 @@
           <i class="el-icon-edit"></i>
           <strong>{{list.blog_id}}</strong>
           <em>{{list.blog_title}}</em>
-          <el-button style="float: right; padding: 3px 0;color:green;" type="text">编辑</el-button>
+          <el-button
+            style="float: right; padding: 3px 0;color:green;"
+            type="text"
+            @click="editBlog(list.blog_id)"
+          >编辑</el-button>
         </div>
         <span>{{list.blog_content}}</span>
         <br />
@@ -76,6 +80,12 @@ export default {
           });
         });
     },
+    editBlog(bid) {
+      console.log(bid);
+      // var bcontent = document.getElementById(bid);
+      // console.log(bcontent);
+    },
+
     getUserInfo() {
       const token = sessionStorage.getItem("user-token");
       if (token != null && token != "null") {
@@ -107,12 +117,17 @@ export default {
 </script>
 
 <style>
+::-webkit-scrollbar {
+  display: none;
+}
 .blogs {
   margin-top: 10px;
 }
 .blogs .el-card {
   float: left;
-  width: 300px;
+  width: 350px;
+  height: 170px;
+  overflow: scroll;
   margin-bottom: 5px;
   margin: 20px;
 }
