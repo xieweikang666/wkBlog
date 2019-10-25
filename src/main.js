@@ -8,12 +8,19 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import Vuex from 'vuex'
 import store from './store'
+import echarts from 'echarts'
 import animate from 'animate.css'
 import { Loading } from 'element-ui';
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+Vue.prototype.$echarts = echarts
+
+
+
+
+
 
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('user-token');

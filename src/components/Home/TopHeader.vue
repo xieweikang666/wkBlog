@@ -1,7 +1,13 @@
 <template>
   <div>
-    <img id="leave" src="../../../static/user/退出.png" title="注销" alt @click="logout()" />
-
+    <img class="top-icon" src="../../../static/user/退出.png" title="注销" alt="注销" @click="logout()" />
+    <img
+      class="top-icon"
+      src="../../../static/face/map.png"
+      title="查看地图"
+      alt="seeMap"
+      @click="seeMap()"
+    />
     <div class="top">
       <i class="el-icon-finished"></i>
       <em>The best preparation for tomorrow is doing your best today.</em>
@@ -38,6 +44,9 @@ export default {
             showClose: false
           });
         });
+    },
+    seeMap() {
+      this.$router.push("/addressMap");
     }
   }
 };
@@ -50,10 +59,11 @@ export default {
   font: small-caps bold 24px/1 sans-serif;
   color: white;
 }
-#leave {
+.top-icon {
   width: 30px;
   float: left;
   margin-top: 15px;
+  margin-right: 15px;
   cursor: pointer;
   background: white;
 }

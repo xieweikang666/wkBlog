@@ -63,6 +63,6 @@ export default {
 .el-footer {
   width: 100%;
   height: 20px;
-  background: olivedrab;
+  background: rgb(151, 150, 146);
 }
 </style>

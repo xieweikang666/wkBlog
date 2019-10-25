@@ -63,13 +63,22 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.list.splice(i, 1);
-          this.$message({
-            showClose: true,
-            type: "success",
-            center: true,
-            message: "成功删除一条博客"
-          });
+          this.$axios
+            .post("/api/blogList" + "/" + this.uid + "/" + this.list[i].blog_id)
+            .then(res => {
+              if (res.status == 200) {
+                this.$message({
+                  showClose: true,
+                  type: "success",
+                  center: true,
+                  message: "成功删除一条博客"
+                });
+                this.getBlogList();
+              } else {
+                this.$message.error("删除失败！");
+              }
+            });
+          // this.list.splice(i, 1);
         })
         .catch(() => {
           this.$message({
@@ -91,7 +100,7 @@ export default {
       if (token != null && token != "null") {
         // 解析token
         let decode = jwt.decode(token);
-        return decode;
+        return decode; // decode解析出来实际上就是{name: XXX,id: XXX}
       } else {
         return null;
       }
@@ -100,9 +109,9 @@ export default {
       this.$axios.get("/api/blogList/" + this.uid).then(res => {
         if (res.status == 200) {
           this.list = res.data;
-          console.log(this.list);
+          console.log("成功获取博客列表" + this.list);
         } else {
-          console.log(this.list);
+          console.log("获取博客信息失败了 :(");
           this.$message.error("获取博客信息失败 : (");
         }
       });
@@ -126,8 +135,9 @@ export default {
 .blogs .el-card {
   float: left;
   width: 350px;
-  height: 170px;
-  overflow: scroll;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 5px;
   margin: 20px;
 }

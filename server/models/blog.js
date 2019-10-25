@@ -13,6 +13,7 @@ const getBlogListById = function* (id) {
     });
     return bloglist;
 }
+
 const writeBlog = function* (data) {
     yield blogList.create({
         // blog_id: data.id,
@@ -24,7 +25,17 @@ const writeBlog = function* (data) {
     return true;
 }
 
+const deleteBlogList = function* (blog_id, user_id) {
+    yield blogList.destroy({
+        where: {
+            blog_id,
+            user_id
+        }
+    })
+    return true;
+}
 module.exports = {
     getBlogListById,
-    writeBlog
+    writeBlog,
+    deleteBlogList
 }

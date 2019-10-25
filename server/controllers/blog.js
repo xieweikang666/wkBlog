@@ -14,8 +14,16 @@ const writeBlog = function* () {
         success: true
     }
 }
-
+const deleteBlogList = function* () {
+    const blog_id = this.params.blog_id;
+    const user_id = this.params.user_id;
+    const result = yield bloglist.deleteBlogList(blog_id, user_id);
+    this.body = {
+        success: true
+    }
+}
 module.exports = {
     getBlogList,
-    writeBlog
+    writeBlog,
+    deleteBlogList
 }

@@ -5,6 +5,7 @@ import Login from '@/views/Login'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',  //修改路由模式为history模式
   routes: [
     {
       path: '/',
@@ -14,7 +15,12 @@ export default new Router({
     {
       path: '/HomePage',
       name: 'HomePage',
-      component: () => import('../views/HomePage.vue')
+      component: () => import('../views/HomePage.vue'),
+    },
+    {
+      path: '/addressMap',
+      name: 'addressMap',
+      component: () => import('../components/Map/addressMap.vue')
     },
     {
       path: '/UserInfo',
