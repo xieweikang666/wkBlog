@@ -109,7 +109,7 @@ export default {
       this.$axios.get("/api/blogList/" + this.uid).then(res => {
         if (res.status == 200) {
           this.list = res.data;
-          console.log("成功获取博客列表" + this.list);
+          this.$message("获取到博客列表~");
         } else {
           console.log("获取博客信息失败了 :(");
           this.$message.error("获取博客信息失败 : (");

@@ -140,7 +140,7 @@ export default {
         AMap.event.addListener(geolocation, "error", onError);
 
         function onComplete(data) {
-          // data是具体的定位信息  精准定位
+          // data是具体的定位信息  精准定位 formattedAddress显示当前定位的位置信息
           console.log(data);
           console.log(data.formattedAddress);
           self.$store.dispatch("setLocation", data);

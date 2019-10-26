@@ -11,13 +11,21 @@ import store from './store'
 import echarts from 'echarts'
 import animate from 'animate.css'
 import { Loading } from 'element-ui';
+// import VueAMap from 'vue-amap';
+
 Vue.use(ElementUI)
 Vue.use(Vuex)
+// Vue.use(VueAMap)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 
-
+// VueAMap.initAMapApiLoader({
+//   key: '0d1783fe188e5ce79b5a449a81c5140f',
+//   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+//   uiVersion: '1.0',// ui库版本，不配置不加载,
+//   v: '1.4.4'
+// })
 
 
 
