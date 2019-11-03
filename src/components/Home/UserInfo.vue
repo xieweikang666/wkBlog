@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="u-info">
     <transition enter-active-class="animated bounceInRight" leave-active-class="animated zoomOut">
       <div class="userinfo" v-show="isShow">
         <el-card shadow="hover">
@@ -8,8 +8,9 @@
               <img src="../../../static/user/头像.png" alt />
               <span>{{userId}} {{userName}}</span>
               <i class="el-icon-close" @click="fade()"></i>
-              <div>{{nowTime}}</div>
-              <!-- <div id="nowtime"></div> -->
+              <span class="now-time">{{nowTime}}</span>
+              <br />
+              <span class="now-weather">{{weatherInfo}}</span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>修改用户信息</el-dropdown-item>
                 <router-link to="/">
@@ -49,7 +50,8 @@ export default {
       isShow: true,
       userName: "",
       userId: "",
-      nowTime: ""
+      nowTime: "",
+      weatherInfo: ""
     };
   },
   created() {
@@ -152,6 +154,28 @@ export default {
           console.log(data);
         }
       });
+      AMap.plugin("AMap.Weather", function() {
+        //创建天气查询实例
+        var weather = new AMap.Weather();
+
+        //执行实时天气信息查询
+        weather.getLive("厦门市", function(err, data) {
+          console.log(err, data);
+          if (data) {
+            self.weatherInfo =
+              "当前天气: " +
+              data.weather +
+              " " +
+              data.temperature +
+              "°" +
+              "风向: " +
+              data.windDirection +
+              " 风力: " +
+              data.windPower;
+            console.log(self.weatherInfo);
+          }
+        });
+      });
     },
     fade() {
       // document.getElementById("userinfo").style.visibility = hidden;
@@ -162,9 +186,14 @@ export default {
 </script>
 
 <style>
+#u-info {
+  position: absolute;
+  z-index: 3;
+}
+
 #add {
   font-size: 14px;
-  color: rgb(65, 230, 153);
+  color: #409eff;
 }
 
 .el-icon-close {
@@ -212,6 +241,7 @@ export default {
     left: 0px;
   }
 }
+
 .userinfo .decorate img:hover {
   width: 30px;
 }
@@ -223,6 +253,17 @@ export default {
   background: white;
   border: 1px solid;
   border-color: lightgray;
+}
+.now-weather {
+  display: block;
+  line-height: 20px;
+  color: #f56c6c;
+}
+.now-time {
+  display: block;
+
+  line-height: 20px;
+  color: #909399;
 }
 .el-icon-caret-left {
   position: relative;

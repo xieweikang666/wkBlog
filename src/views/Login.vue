@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="back" src="../../static/back/loginBack1.jpg" alt />
+    <img id="back" src="../../static/back/mapBack2.jpg" alt />
     <span id="blogTitle">Elsnake's Blog</span>
     <div class="midContainer">
       <em style="float:right">密码登录</em>
@@ -132,7 +132,7 @@ export default {
 html {
   font-size: 15px;
 }
-.back {
+#back {
   position: absolute;
   z-index: -1;
   top: 0px;
@@ -140,6 +140,7 @@ html {
   width: 100%;
   height: 100%;
 }
+
 #blogTitle {
   display: block;
   color: white;
@@ -156,7 +157,7 @@ html {
   height: 27rem;
   background: white;
   border-radius: 5px;
-  box-shadow: black 5px 5px 30px 5px;
+  box-shadow: rgb(161, 159, 159) 5px 5px 20px 5px;
 }
 .midContainer input {
   display: block;

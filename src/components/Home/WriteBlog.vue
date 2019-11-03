@@ -3,22 +3,33 @@
     <el-card shadow="hover">
       <span>记录今天的想法？</span>
       <br />
-      <el-input class="blogtitle" prefix-icon="el-icon-menu" v-model="btitle" placeholder="标题"></el-input>
+      <el-input class="blog-title" prefix-icon="el-icon-menu" v-model="btitle" placeholder="标题"></el-input>
+      <br />
       <el-input
-        class="content"
+        class="blog-content"
         type="textarea"
         :rows="2"
         placeholder="请输入内容"
         v-model="bcontent"
         maxlength="150"
       ></el-input>
+      <el-upload
+        action="https://jsonplaceholder.typicode.com/posts/"
+        list-type="picture-card"
+        :on-preview="handlePicCardPreview"
+        :on-remove="handleRemove"
+      >
+        <i class="el-icon-plus" title="上传图片"></i>
+      </el-upload>
+      <el-dialog :visible.sync="dialogVisible">
+        <img width="100%" :src="dialogImgUrl" alt="无法显示该图片" />
+      </el-dialog>
       <el-button type="success" size="small" style="float:right;" @click="addBlog()">添加</el-button>
     </el-card>
   </div>
 </template>
 
 <script>
-import qs from "qs";
 export default {
   props: {
     uid: String
@@ -29,7 +40,9 @@ export default {
       // bid: 6,
       btitle: "",
       bcontent: "",
-      btime: ""
+      btime: "",
+      dialogImgUrl: "",
+      dialogVisible: false
     };
   },
   mounted() {
@@ -68,9 +81,13 @@ export default {
       }
       this.btitle = ""; //把blog标题清空
       this.bcontent = ""; //将blog内容清空
-      setTimeout(() => {
-        this.$router.go(0); //刷新页面
-      }, 0);
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePicCardPreview(file) {
+      this.dialogImgUrl = file.url;
+      this.dialogVisible = true;
     },
     getNowTime() {
       var time = new Date();
@@ -104,17 +121,28 @@ export default {
 
 <style>
 .writeBlog {
-  width: 350px;
+  width: 500px;
+  border-radius: 20px;
+  border: 1px solid rgb(75, 223, 30);
 }
-.writeBlog .blogtitle {
+.writeBlog .blog-title {
   width: 200px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.writeBlog .content {
+.writeBlog .blog-content {
+  width: 400px;
   margin-bottom: 5px;
 }
 .writeBlog button {
   margin-bottom: 5px;
+}
+.el-upload {
+  width: 60px;
+  height: 60px;
+}
+.el-upload .el-icon-plus {
+  display: block;
+  margin-top: 30%;
 }
 </style>

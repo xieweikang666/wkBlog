@@ -54,15 +54,22 @@ export default {
   margin-bottom: 0px;
 }
 .el-header {
-  background: green;
+  background: linear-gradient(
+    to right,
+    #eea2a2 0%,
+    #bbc1bf 19%,
+    #57c6e1 42%,
+    #b49fda 79%,
+    #7ac5d8 100%
+  );
 }
 .el-main {
-  background: rgb(241, 241, 241);
+  background: rgb(233, 230, 230);
   height: 88vh;
 }
 .el-footer {
   width: 100%;
   height: 20px;
-  background: rgb(151, 150, 146);
+  background: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
 }
 </style>

@@ -11,6 +11,7 @@
           <strong>{{list.blog_id}}</strong>
           <em>{{list.blog_title}}</em>
           <el-button
+            ref="editBtn"
             style="float: right; padding: 3px 0;color:green;"
             type="text"
             @click="editBlog(list.blog_id)"
@@ -18,7 +19,10 @@
         </div>
         <span>{{list.blog_content}}</span>
         <br />
-        <time class="time">{{ list.blog_time }}</time>
+        <div class="time">
+          <i class="el-icon-watch"></i>
+          {{ list.blog_time }}
+        </div>
         <el-button
           style="float: right; padding: 1px 0;color:gray;"
           type="text"
@@ -90,7 +94,10 @@ export default {
         });
     },
     editBlog(bid) {
-      console.log(bid);
+      console.log("bid:" + bid + "按钮信息" + this.$refs.editBtn[bid]);
+
+      // this.$refs.editBtn[bid].innerText = "保存";
+
       // var bcontent = document.getElementById(bid);
       // console.log(bcontent);
     },
@@ -109,7 +116,10 @@ export default {
       this.$axios.get("/api/blogList/" + this.uid).then(res => {
         if (res.status == 200) {
           this.list = res.data;
-          this.$message("获取到博客列表~");
+          this.$message({
+            message: "获取到博客列表",
+            center: true
+          });
         } else {
           console.log("获取博客信息失败了 :(");
           this.$message.error("获取博客信息失败 : (");
@@ -142,6 +152,8 @@ export default {
   margin: 20px;
 }
 .time {
+  display: inline-block;
+  margin-top: 10px;
   font-size: 13px;
   color: #999;
 }
